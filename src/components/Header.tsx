@@ -1,4 +1,4 @@
-
+import { useState, useEffect } from "react";
 import { ShoppingCart, Menu } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import CartModal from "./CartModal";
