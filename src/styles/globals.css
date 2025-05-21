@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* שכבת base */
+@layer base {
+  html {
+    font-family: "Inter", sans-serif;
+    direction: rtl;
+    background-color: #f0f4f8;
+  }
+
+  body {
+    @apply text-gray-800;
+  }
+
+  a {
+    @apply text-blue-700 hover:text-blue-900 underline-offset-4;
+  }
+
+  h1, h2, h3 {
+    @apply font-bold text-gray-900;
+  }
+
+  button {
+    @apply transition-all;
+  }
+}
+
+/* שכבת utilities – חייבת להיות מחוץ ל-base */
+@layer utilities {
+  @keyframes cart-pop {
+    0% {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .animate-cart-pop {
+    animation: cart-pop 0.25s ease-out;
+  }
+}
