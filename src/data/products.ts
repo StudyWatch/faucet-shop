@@ -8,6 +8,7 @@ export default [
     image: "/images/water1.jpeg",
     description: "ברז עם זרימה מתכווננת",
     category: "faucets",
+    isOnSale: true,
   },
   {
     id: "2",
@@ -16,6 +17,7 @@ export default [
     image: "/images/water2.jpeg",
     description: "ברז מעוצב לאמבטיה",
     category: "faucets",
+    isOnSale: false,
   },
   {
     id: "3",
@@ -24,6 +26,7 @@ export default [
     image: "/images/water3.jpeg",
     description: "ראש גשם עם שליטה בלחץ",
     category: "showers",
+    isOnSale: true,
   },
   {
     id: "4",
@@ -32,5 +35,6 @@ export default [
     image: "/images/water4.jpeg",
     description: "אסלה עם הדחה אוטומטית",
     category: "toilets",
+    isOnSale: false,
   },
 ];
