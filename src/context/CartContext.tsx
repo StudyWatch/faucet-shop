@@ -1,10 +1,10 @@
-
+import {
   createContext,
   useContext,
   useState,
   useEffect,
-  ReactNode,
 } from "react";
+import type { ReactNode } from "react"; // 🟢 זה חשוב!
 
 // טיפוס שמייצג מוצר בודד
 type Product = {
@@ -41,18 +41,15 @@ export function useCart() {
 
 // ספק גלובלי של העגלה לכל האפליקציה
 export function CartProvider({ children }: { children: ReactNode }) {
-  // אתחול עגלה מתוך localStorage אם יש, אחרת התחלה ריקה
   const [cart, setCart] = useState<CartItem[]>(() => {
     const stored = localStorage.getItem("cart");
     return stored ? JSON.parse(stored) : [];
   });
 
-  // שמירה ל-localStorage בכל שינוי של העגלה
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // הוספת מוצר לעגלה
   const addToCart = (product: Product) => {
     setCart((prev) => {
       const existing = prev.find((item) => item.id === product.id);
@@ -67,22 +64,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  // הסרה לפי מזהה
   const removeFromCart = (productId: string) => {
     setCart((prev) => prev.filter((item) => item.id !== productId));
   };
 
-  // ניקוי מוחלט של העגלה
   const clearCart = () => {
     setCart([]);
   };
 
-  // סכימה כוללת של כל הפריטים
   const getTotal = () => {
     return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   };
 
-  // החזרת ההקשר לכל שאר האפליקציה
   return (
     <CartContext.Provider
       value={{ cart, addToCart, removeFromCart, clearCart, getTotal }}
