@@ -1,5 +1,10 @@
+// React hooks
+import { useState } from "react";
 
+// Contexts
 import { useCart } from "../context/CartContext";
+
+// Icons
 import { CheckCircle } from "lucide-react";
 
 export default function CheckoutPage() {
@@ -22,19 +27,20 @@ export default function CheckoutPage() {
         💳 סיכום ההזמנה
       </h1>
 
-      {cart.length === 0 && !orderPlaced ? (
-        <div className="text-center py-20 text-gray-600 text-lg">
-          העגלה שלך ריקה. חזור לחנות להוסיף מוצרים.
-        </div>
-      ) : orderPlaced ? (
+      {/* הודעת הצלחה */}
+      {orderPlaced ? (
         <div className="text-center py-20 text-green-700">
           <CheckCircle size={48} className="mx-auto mb-4" />
           <h2 className="text-2xl font-bold">הזמנתך התקבלה בהצלחה!</h2>
           <p className="text-gray-600 mt-2">פרטי ההזמנה נשלחו לדוא"ל שלך.</p>
         </div>
+      ) : cart.length === 0 ? (
+        <div className="text-center py-20 text-gray-600 text-lg">
+          העגלה שלך ריקה. חזור לחנות כדי להוסיף מוצרים.
+        </div>
       ) : (
         <>
-          {/* רשימת מוצרים */}
+          {/* פרטי המוצרים */}
           <section className="mb-10">
             <h2 className="text-xl font-bold text-gray-800 mb-4">🧾 פרטי המוצרים:</h2>
             <ul className="divide-y divide-gray-200 border rounded-lg bg-white">
@@ -74,22 +80,24 @@ export default function CheckoutPage() {
               <input
                 type="text"
                 placeholder="שם מלא"
+                required
                 className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-300"
               />
               <input
                 type="tel"
                 placeholder="מספר טלפון"
+                required
                 className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-300"
               />
-             <input
-  type="email"
-  placeholder='דוא"ל'
-  className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-300"
-/>
-
+              <input
+                type="email"
+                placeholder="דואל"
+                required
+                className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-300"
+              />
               <input
                 type="text"
-                placeholder="כתובת מלאה למשלוח"
+                placeholder="כתובת למשלוח"
                 className="border p-3 rounded-lg focus:ring-2 focus:ring-blue-300 col-span-full"
               />
               <textarea
@@ -100,7 +108,7 @@ export default function CheckoutPage() {
             </form>
           </section>
 
-          {/* כפתור סיום */}
+          {/* כפתור אישור */}
           <div className="text-center">
             <button
               onClick={handlePlaceOrder}
@@ -108,7 +116,9 @@ export default function CheckoutPage() {
             >
               אישור הזמנה
             </button>
-            <p className="text-xs text-gray-400 mt-3">בלחיצה תשלח ההזמנה ותתאפס העגלה</p>
+            <p className="text-xs text-gray-400 mt-3">
+              בלחיצה תשלח ההזמנה ותתאפס העגלה
+            </p>
           </div>
         </>
       )}
