@@ -1,5 +1,4 @@
-// src/components/ProductCard.tsx
-import React from "react";
+
 import { ShoppingCart, Info } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { useNotification } from "../context/NotificationContext";
@@ -12,10 +11,11 @@ interface Product {
   description: string;
   isOnSale?: boolean;
 }
-
 interface Props {
   product: Product;
+  onAddToCart?: () => void;
 }
+
 
 export default function ProductCard({ product }: Props) {
   const { addToCart } = useCart();
